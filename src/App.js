@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import GoogleMapReact from 'google-map-react';
 
-function App() {
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+const Map = ({ apiKey }) => {
+
+
+// Coordonnées de Sousse(Tunisie)
+
+  const center = { lat: 35.8254, lng:  10.6369 }; 
+  const zoom = 10;
+
+  return (
+    <div style={{ height: '600px', width: '100%' }}>
+
+      <GoogleMapReact
+
+        bootstrapURLKeys={{ key: apiKey }}
+        defaultCenter={center}
+        defaultZoom={zoom}
+      >
+        <AnyReactComponent
+          lat={35.8254}
+          lng={10.6369}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+    </div>
+  );
+}
+
+  function App() {
+  const apiKey = 'AIzaSyB-vuIzHC7iGIZ7RMYu-0Dq8VOEqAH3bu0'; //Mon Code Api Google
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Cloud Integration Project</h1>
+      <Map apiKey={apiKey} />
     </div>
   );
 }
